@@ -28,11 +28,11 @@ function getName(character) {
  *
  * Sample data expected output: 5
  */
+const filmCount = []
 function getFilmCount(character) {
-  // TODO: Add your code inside the functions (others below).
-
+return character.films.length
 }
-
+//console.log(getFilmCount(lukeSkywalker));
 /**
  * ### Challenge `getSecondStarshipName`
  * MVP Challenge 🤓
@@ -42,8 +42,13 @@ function getFilmCount(character) {
  * If length is 0. Return 'none'
 */
 function getSecondStarshipName(character) {
-  // TODO: Add your code here.
+  if(character.starships.length >= 1){
+  return character.starships[1].name;
+  }else{
+  return "none"
+  }
 }
+
 
 /**
  * ### Challenge `getSummary`
@@ -55,8 +60,9 @@ function getSecondStarshipName(character) {
  *    Result: `Luke Skywalker, 172cm, 77kg. Featured in 5 films.`
  */
 function getSummary(character) {
-  // TODO: Add your code here.
+  return `${character.name}, ${character.height}cm, ${character.mass}kg. Featured in ${character.films.length} films.`
 }
+console.log(getSummary(lukeSkywalker));
 
 /**
  * ### Challenge `getVehiclesCostInCreditsSumTotal`
@@ -67,8 +73,12 @@ function getSummary(character) {
  * Sample data expected output: 8000
 */
 function getVehiclesCostInCreditsSumTotal(character) {
-  // TODO: Add your code here.
+  const getVehicles = character.vehicles.reduce(function(acc, currentVal){
+    return acc + currentVal.cost_in_credits
+  }, 0)
+  return getVehicles
 }
+console.log(getVehiclesCostInCreditsSumTotal(lukeSkywalker));
 
 /**
  * ### Challenge `getStarshipPassengerAndCrewSumTotal`
@@ -81,7 +91,8 @@ function getVehiclesCostInCreditsSumTotal(character) {
  * Sample data expected output: 27
 */
 function getStarshipPassengerAndCrewSumTotal(character) {
-  // TODO: Add your code here.
+  const vehicleCrewSum = character.starships.reduce((acc, item) => acc + item.passengers + item.crew, 0);
+  return vehicleCrewSum;
 }
 
 /**
@@ -98,9 +109,15 @@ function getStarshipPassengerAndCrewSumTotal(character) {
  * Given film #7, expected error: `There are only 3 Star Wars movies. Flan fiction excluded.`
 */
 function getNthFilm(character, filmNumber) {
-  // TODO: Add your code here.
+ for(let i = 0; i < character.films.length; i++){
+   if(filmNumber < 4){
+     return `${character.films[filmNumber - 1]}`;
+   } else{
+     return 'There are only 3 Star Wars movies. Flan fiction excluded'
+   }
+ }
 }
-
+console.log(getNthFilm(lukeSkywalker, 1));
 /**
  * ### Challenge `getCargoCapacityTotal`
  * Stretch Goal 💪
@@ -112,7 +129,7 @@ function getNthFilm(character, filmNumber) {
  * Sample data expected output: 80124
 */
 function getCargoCapacityTotal(character) {
-  // TODO: Add your code here.
+  const cargoCapacity = character.cargo_capacity.reduce()
 }
 
 /**
